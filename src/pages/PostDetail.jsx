@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function PostDetail () {
@@ -40,24 +41,32 @@ function PostDetail () {
 
     return (
         <>
+            {
+            //Load Posts 
+            }
             {postLoading === true ? (
                 <p>Loading Post ...</p>
             ) : (
                 <div>
-                    <h2>{postInfo.title} - {postInfo.author.email}</h2>
-                    <h3></h3>
+                    <h2>{postInfo.title} - <Link to={`/users/${postInfo.authorId}`}>{postInfo.author.email}</Link></h2>
+                    <h3>{postInfo.createdAt}</h3>
                     <div>
                         {postInfo.body}
                     </div>
                 </div>
             )}
+            {
+            //Load Comments
+            }
             {commentLoading === true ? (
                 <p>Loading Comments ...</p>
             ) : (
                 <div>
                     {commentInfo.map(comment => (
                         <div key={comment.id}>
-                            <span>{comment.author.email}</span>
+                            <Link to={`/users/${comment.authorId}`}>
+                                {comment.author.email}
+                            </Link>
                             <span>{comment.body}</span>
                         </div>
                     ))}

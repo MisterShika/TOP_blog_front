@@ -11,7 +11,6 @@ function Home () {
             try{
                 const postData = await axios('http://localhost:3000/posts');
                 setPostList(postData.data);
-                console.log(postData.data);
             }catch (error){
                 console.error("Error in front end user fetching", error);
             }finally{
@@ -24,14 +23,26 @@ function Home () {
 
     return (
         <div>
-            Hello World
+            <h1>TOP Blog</h1>
             {postLoading === true ? (
                 <p>Loading Posts ...</p>
             ) : (
                 postList.map(post => (
-                    <Link to={`/posts/${post.id}`} key={post.id}>
-                        {post.title} - {post.author.email}
-                    </Link>
+                    <div key={post.id}>
+                        <h2>
+                            <Link to={`/posts/${post.id}`}>
+                                {post.title}
+                            </Link>
+                        </h2>
+                        <h3>
+                            {post.createdAt}
+                        </h3>
+                        <h4>
+                            <Link to={`/users/${post.authorId}`}>
+                                {post.author.email}
+                            </Link>
+                        </h4>
+                    </div>
                 ))
             )}
         </div>
