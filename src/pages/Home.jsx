@@ -11,6 +11,7 @@ function Home () {
             try{
                 const postData = await axios('http://localhost:3000/posts');
                 setPostList(postData.data);
+                console.log(postData.data);
             }catch (error){
                 console.error("Error in front end user fetching", error);
             }finally{
@@ -29,7 +30,7 @@ function Home () {
             ) : (
                 postList.map(post => (
                     <Link to={`/posts/${post.id}`} key={post.id}>
-                        {post.title}
+                        {post.title} - {post.author.email}
                     </Link>
                 ))
             )}

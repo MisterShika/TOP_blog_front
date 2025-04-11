@@ -44,7 +44,7 @@ function PostDetail () {
                 <p>Loading Post ...</p>
             ) : (
                 <div>
-                    <h2>{postInfo.title}</h2>
+                    <h2>{postInfo.title} - {postInfo.author.email}</h2>
                     <h3></h3>
                     <div>
                         {postInfo.body}
@@ -57,6 +57,7 @@ function PostDetail () {
                 <div>
                     {commentInfo.map(comment => (
                         <div key={comment.id}>
+                            <span>{comment.author.email}</span>
                             <span>{comment.body}</span>
                         </div>
                     ))}
