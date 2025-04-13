@@ -45,6 +45,11 @@ function Home () {
                     </div>
                 ))
             )}
+            <div>
+                <Link to={`/login`}>
+                    Log In
+                </Link>
+            </div>
         </div>
     )
 }
