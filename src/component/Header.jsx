@@ -11,8 +11,7 @@ function Header () {
                     <div>
                         <Link to={`/`}>Home</Link>
                         <div>
-                            Logged in as :
-                            {user.loginData.email}
+                            Logged in as : {user.loginData.email}
                         </div>
                         <button onClick={logout}>Log Out</button>
                     </div>

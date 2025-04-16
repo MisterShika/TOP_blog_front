@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from '../component/Header';
 
 import { useAuth } from '../AuthContext';
+import MakeComment from '../component/MakeComment';
 
 function PostDetail () {
     const { id: postId } = useParams();
@@ -46,7 +47,7 @@ function PostDetail () {
     }, []);
 
     return (
-        <>
+        <div>
             {
             //Load Posts 
             }
@@ -79,7 +80,17 @@ function PostDetail () {
                     ))}
                 </div>
             )}
-        </>
+            {user != null ? (
+                <div>
+                    <h3>Make Post</h3>
+                    <MakeComment />
+                </div>
+            ) : (
+                <div>
+                    <Link to={`/login`}>Log In</Link> to post!
+                </div>
+            )}
+        </div>
     );
 }
 

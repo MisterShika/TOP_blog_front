@@ -1,14 +1,15 @@
 import {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import { useAuth } from '../AuthContext';
+import { useAuth } from '../AuthContext';
 import Header from '../component/Header';
+import MakePost from '../component/MakePost';
 
 function Home () {
     const [postList, setPostList] = useState();
     const [postLoading, setPostLoading] = useState(true);
 
-    // const { user } = useAuth();
+    const { user } = useAuth();
     
     useEffect(() => {
         const fetchData = async () => {
@@ -50,11 +51,16 @@ function Home () {
                     </div>
                 ))
             )}
-            <div>
-                <Link to={`/login`}>
-                    Log In
-                </Link>
-            </div>
+            {user != null ? (
+                <div>
+                    <h3>Make Post</h3>
+                    <MakePost />
+                </div>
+            ) : (
+                <div>
+                    <Link to={`/login`}>Log In</Link> to post!
+                </div>
+            )}
         </div>
     )
 }
