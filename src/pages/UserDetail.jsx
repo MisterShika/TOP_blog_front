@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from '../component/Header';
 
 function PostDetail () {
     const { id: userId } = useParams();
@@ -37,7 +38,8 @@ function PostDetail () {
     }, []);
 
     return (
-        <>
+        <div>
+            <Header />
             {loadingUserInfo == true ? (
                 <div>
                     Loading...
@@ -63,7 +65,7 @@ function PostDetail () {
                     ))}
                 </div>
             )}
-        </>
+        </div>
     );
 }
 

@@ -1,10 +1,14 @@
 import {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+// import { useAuth } from '../AuthContext';
+import Header from '../component/Header';
 
 function Home () {
     const [postList, setPostList] = useState();
     const [postLoading, setPostLoading] = useState(true);
+
+    // const { user } = useAuth();
     
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +27,7 @@ function Home () {
 
     return (
         <div>
+            <Header />
             <h1>TOP Blog</h1>
             {postLoading === true ? (
                 <p>Loading Posts ...</p>

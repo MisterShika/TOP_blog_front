@@ -2,6 +2,9 @@ import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from '../component/Header';
+
+import { useAuth } from '../AuthContext';
 
 function PostDetail () {
     const { id: postId } = useParams();
@@ -10,6 +13,7 @@ function PostDetail () {
     const [postLoading, setPostLoading] = useState(true);
     const [commentLoading, setCommnentLoading] = useState(true);
 
+    const { user } = useAuth();
    
     useEffect(() => {
          //Getting data for the blog post
@@ -37,6 +41,8 @@ function PostDetail () {
 
         fetchPosts();
         fetchComments();
+
+        console.log(user);
     }, []);
 
     return (
@@ -48,6 +54,7 @@ function PostDetail () {
                 <p>Loading Post ...</p>
             ) : (
                 <div>
+                    <Header />
                     <h2>{postInfo.title} - <Link to={`/users/${postInfo.authorId}`}>{postInfo.author.email}</Link></h2>
                     <h3>{postInfo.createdAt}</h3>
                     <div>
