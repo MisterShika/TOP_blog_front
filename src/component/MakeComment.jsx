@@ -1,10 +1,33 @@
 import {useState} from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function MakeComment () {
+function MakeComment ({postId}) {
     const [content, setContent] = useState('');
 
-    const handleSubmit = async (event) => {
-        console.log("Test");
+    const navigate = useNavigate();
+
+    const token = sessionStorage.getItem('token')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        axios.post(
+            'http://localhost:3000/comments/addComment',
+            {
+                postId,
+                content,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        ).then(res => {
+            console.log("Comment successful", res.data);
+            navigate(0);
+        }).catch(err => {
+            console.error("Error making comment frontend", err)
+        });
     };
 
     return (

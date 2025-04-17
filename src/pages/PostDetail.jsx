@@ -42,8 +42,6 @@ function PostDetail () {
 
         fetchPosts();
         fetchComments();
-
-        console.log(user);
     }, []);
 
     return (
@@ -83,7 +81,7 @@ function PostDetail () {
             {user != null ? (
                 <div>
                     <h3>Make Post</h3>
-                    <MakeComment />
+                    <MakeComment postId={postId} />
                 </div>
             ) : (
                 <div>

@@ -1,25 +1,22 @@
 import {useState} from 'react';
 import axios from 'axios';
-import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function MakePost () {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
-    const { user } = useAuth();
-
     const navigate = useNavigate();
 
     const token = sessionStorage.getItem('token')
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         axios.post(
             'http://localhost:3000/posts/addPost',
             {
                 title,
-                content,
-                user
+                content
             },
             {
                 headers: {
