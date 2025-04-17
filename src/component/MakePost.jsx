@@ -1,12 +1,37 @@
 import {useState} from 'react';
+import axios from 'axios';
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function MakePost () {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
+    const { user } = useAuth();
 
-    const handleSubmit = async (event) => {
-        console.log("Test");
+    const navigate = useNavigate();
+
+    const token = sessionStorage.getItem('token')
+
+    const handleSubmit = async () => {
+        axios.post(
+            'http://localhost:3000/posts/addPost',
+            {
+                title,
+                content,
+                user
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        ).then(res => {
+            console.log("Post successful", res.data);
+            navigate('/');
+        }).catch(err => {
+            console.error("Error making post frontend", err)
+        });
     };
 
     return (

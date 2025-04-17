@@ -87,7 +87,7 @@ function PostDetail () {
                 </div>
             ) : (
                 <div>
-                    <Link to={`/login`}>Log In</Link> to post!
+                    <Link to={`/login`}>Log In</Link> to comment!
                 </div>
             )}
         </div>

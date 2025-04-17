@@ -15,6 +15,7 @@ function Home () {
         const fetchData = async () => {
             try{
                 const postData = await axios('http://localhost:3000/posts');
+                console.log(postData.data);
                 setPostList(postData.data);
             }catch (error){
                 console.error("Error in front end user fetching", error);
