@@ -4,6 +4,9 @@ import { useAuth } from '../AuthContext';
 function Header () {
     const { user, logout } = useAuth();
 
+    console.log(`Test:\n${JSON.stringify(user, null, 2)}`);
+
+
     return(
         <header>
             {
@@ -19,6 +22,9 @@ function Header () {
                     <div>
                         <Link to={`/login`}>
                             Log In
+                        </Link>
+                        <Link to={`/signup`}>
+                            Sign Up
                         </Link>
                     </div>
                 )
